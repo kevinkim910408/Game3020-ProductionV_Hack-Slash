@@ -629,7 +629,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &715637475
 GameObject:
@@ -1153,7 +1153,7 @@ Transform:
   - {fileID: 499396850}
   - {fileID: 835524216}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1606396419
 GameObject:
@@ -1468,6 +1468,63 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2019318216}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &2020251947
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: d922bf90985f2ab4b8879106449e4eba, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.288875
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d922bf90985f2ab4b8879106449e4eba, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d922bf90985f2ab4b8879106449e4eba, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.3831925
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d922bf90985f2ab4b8879106449e4eba, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d922bf90985f2ab4b8879106449e4eba, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9994725
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d922bf90985f2ab4b8879106449e4eba, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d922bf90985f2ab4b8879106449e4eba, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.032476127
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d922bf90985f2ab4b8879106449e4eba, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d922bf90985f2ab4b8879106449e4eba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d922bf90985f2ab4b8879106449e4eba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 183.722
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d922bf90985f2ab4b8879106449e4eba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d922bf90985f2ab4b8879106449e4eba, type: 3}
+      propertyPath: m_Name
+      value: brute
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d922bf90985f2ab4b8879106449e4eba, type: 3}
 --- !u!1 &2056522030
 GameObject:
   m_ObjectHideFlags: 0
@@ -1582,7 +1639,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 697a97bcb3ec9234e8711040070cfd74, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1684,7 +1741,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 697a97bcb3ec9234e8711040070cfd74, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1753,7 +1810,7 @@ Transform:
   - {fileID: 4110279010090673359}
   - {fileID: 4110279010997335291}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4110279011352960079
 GameObject:
