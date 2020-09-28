@@ -39,6 +39,11 @@ public class ControllerScript : MonoBehaviour
     // to set layers
     [SerializeField]
     LayerMask groundLayerMask;
+
+    [SerializeField]
+    private Animator animator;
+
+    readonly int moveHash = Animator.StringToHash("Move");
     #endregion
 
     // Start is called before the first frame update
@@ -81,10 +86,12 @@ public class ControllerScript : MonoBehaviour
         if (navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance)
         {
             characterController.Move(navMeshAgent.velocity * Time.deltaTime);
+            animator.SetBool(moveHash, true);
         }
         else
         {
             characterController.Move(Vector3.zero);
+            animator.SetBool(moveHash, false);
         }
     }
     private void LateUpdate()
