@@ -9,7 +9,6 @@ using UnityEngine;
 /// History: 
 /// 2020-09-28  - add variables about movements.
 ///             - Jump, Dash methods
-///             - Working good
 ///             - Not Using
 ///             
 /// Last Modified: 2020-09-28

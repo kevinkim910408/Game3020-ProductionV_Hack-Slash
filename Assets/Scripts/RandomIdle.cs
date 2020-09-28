@@ -2,17 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Student Name: Junho Kim
+/// Student Number: 101136986
+/// Source File: RandomIdle.cs
+/// History: 
+/// 2020-09-28  - Randomly run Idle animations
+///             
+/// Last Modified: 2020-09-28
+/// </summary>
+
 public class RandomIdle : StateMachineBehaviour
 {
     //state numbers
-    public int numberOfStates = 2;
-
-    public float minNormTime = 0f;
-    public float maxNormTime = 5f;
+    [SerializeField]
+    int numberOfStates = 2;
+    [SerializeField]
+    float minNormTime = 0f;
+    [SerializeField]
+    float maxNormTime = 5f;
 
     //for calculating
 
-    public float randomNormalTime;
+    private float randomNormalTime;
 
     readonly int hashRandomIdle = Animator.StringToHash("RandomIdle");
 

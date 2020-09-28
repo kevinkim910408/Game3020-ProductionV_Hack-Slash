@@ -13,7 +13,6 @@ using UnityEngine.AI;
 ///             - Critical Error: error CS1061: 'CharacterController' does not contain a definition for 'Move' and no accessible exten
 ///             - How to fix? change the script name not same as 'CharacterController'. This name makes Unity does not know how to access 'CharacterController'.
 ///             - Character Controller + NavMesh Agent
-///             - Working good
 ///             
 /// Last Modified: 2020-09-28
 /// </summary>
