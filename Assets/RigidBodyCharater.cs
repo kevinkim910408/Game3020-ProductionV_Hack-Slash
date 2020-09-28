@@ -8,7 +8,8 @@ using UnityEngine;
 /// Source File: RigidBodyCharacter.cs
 /// History: 
 /// 2020-09-28  - add variables about movements.
-///             - 
+///             - Jump, Dash methods
+///             - Working good
 ///             
 /// Last Modified: 2020-09-28
 /// </summary>
@@ -29,7 +30,7 @@ public class RigidBodyCharater : MonoBehaviour
 
     //prevent double jump
     private bool isGround = false;
-    public LayerMask groundLayerMask;
+    public LayerMask groundLayerMask; // in the ground layer, player can jump only
     public float groundCheckDistance = 0.3f;
     #endregion
 
