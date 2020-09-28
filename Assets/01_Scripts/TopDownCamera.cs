@@ -82,7 +82,7 @@ public class TopDownCamera : MonoBehaviour
         // Build Rotated vector
         Vector3 rotatedVector = Quaternion.AngleAxis(angle, Vector3.up) * worldPosition;
 
-        // Move player position
+        // Move to player position
         Vector3 flatTargetPosition = target.position;
         flatTargetPosition.y += lookAtHeight;
 
