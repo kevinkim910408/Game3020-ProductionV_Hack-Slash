@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 /// <summary>
 /// Student Name: Junho Kim
@@ -11,6 +12,7 @@ using UnityEngine;
 ///             - Jump, Dash methods
 ///             - Critical Error: error CS1061: 'CharacterController' does not contain a definition for 'Move' and no accessible exten
 ///             - How to fix? change the script name not same as 'CharacterController'. This name makes Unity does not know how to access 'CharacterController'.
+///             - Character Controller + NavMesh Agent
 ///             - Working good
 ///             
 /// Last Modified: 2020-09-28
@@ -19,19 +21,9 @@ using UnityEngine;
 public class ControllerScript : MonoBehaviour
 {
     #region Variables
-    //basic variables about the movements
-    [SerializeField]
-    float speed = 5f;
-    [SerializeField]
-    float jumpHeight = 2.0f;
-    [SerializeField]
-    float dashDistance = 5.0f;
-
-    //gravity and drag
-    [SerializeField]
-    float gravity = -29.81f;
-    [SerializeField]
-    private Vector3 drags;
+    //get NavMesh
+    private NavMeshAgent navMeshAgent;
+    private Camera camera;
 
     //to get CharacterController from the unity
     private CharacterController characterController;
@@ -39,15 +31,14 @@ public class ControllerScript : MonoBehaviour
     //to calculate
     private Vector3 calcVelocity = Vector3.zero;
 
-    //movement(vector3)
-    private Vector3 inputDirection = Vector3.zero;
-
     //prevent double jump
     private bool isGround = false;
     [SerializeField]
-   LayerMask groundLayerMask; // in the ground layer, player can jump only
-    [SerializeField]
     float groundCheckDistance = 0.3f;
+
+    // to set layers
+    [SerializeField]
+    LayerMask groundLayerMask;
     #endregion
 
     // Start is called before the first frame update
@@ -55,54 +46,49 @@ public class ControllerScript : MonoBehaviour
     {
         //to get CharacterController from the unity
         characterController = GetComponent<CharacterController>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+
+        // will use character controller position
+        navMeshAgent.updatePosition = false;
+        navMeshAgent.updateRotation = true;
+
+        camera = Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Check grounded
-        bool isGrounded = characterController.isGrounded;
-
-        //if player is on the ground, gravity = 0
-        if (isGrounded && calcVelocity.y < 0)
+        // 0 - left mouse click
+        if (Input.GetMouseButtonDown(0))
         {
-            calcVelocity.y = 0f;
+            //Debug.Log(Input.mousePosition.ToString());
+
+
+            // Make ray from screen to world
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+
+            // Check hit
+            RaycastHit raycastHit;
+            if (Physics.Raycast(ray, out raycastHit, 100, groundLayerMask))
+            {
+                //Debug.Log("We hit " + raycastHit.collider.name + " " + raycastHit.point);
+
+                // Move our player to what we hit
+                navMeshAgent.SetDestination(raycastHit.point);
+            }
         }
 
-        //user input - basic movments
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        characterController.Move(move * Time.deltaTime * speed);
-
-        //actual code about user movements
-        if (move != Vector3.zero)
+        if (navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance)
         {
-            transform.forward = move;
+            characterController.Move(navMeshAgent.velocity * Time.deltaTime);
         }
-
-        //user input - jump
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        else
         {
-            calcVelocity.y += Mathf.Sqrt(jumpHeight * -2f * gravity);
+            characterController.Move(Vector3.zero);
         }
-
-        //user input - dash
-        if (Input.GetButtonDown("Dash"))
-        {
-            Debug.Log("Dash");
-            calcVelocity += Vector3.Scale(transform.forward, dashDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * drags.x + 1)) / -Time.deltaTime),
-                0,
-                (Mathf.Log(1f / (Time.deltaTime * drags.z + 1)) / -Time.deltaTime))
-                );
-        }
-
-        //gravity
-        calcVelocity.y += gravity * Time.deltaTime;
-
-        //dash ground drags
-        calcVelocity.x /= 1 + drags.x * Time.deltaTime;
-        calcVelocity.y /= 1 + drags.y * Time.deltaTime;
-        calcVelocity.z /= 1 + drags.z * Time.deltaTime;
-
-        characterController.Move(calcVelocity * Time.deltaTime);
     }
-}
+    private void LateUpdate()
+    {
+        transform.position = navMeshAgent.nextPosition;
+    }
+} 
