@@ -58,11 +58,11 @@ public class IdleState : State<EnemyController>
                 stateMachine.ChangeState<MoveState>();
             }
         }
-        
+        /*
         else if (isPatrol && stateMachine.ElapsedTimeInState > idleTime)
         {
 
-        }
+        }*/
         
     }
 

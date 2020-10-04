@@ -8,6 +8,7 @@ using UnityEngine;
 /// Source File: AttackState.cs
 /// History: 
 /// 2020-10-03  - Attack state
+///             - Attack animation is not working - need to fix
 ///             
 /// Last Modified: 2020-10-04
 /// </summary>
