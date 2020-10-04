@@ -23,6 +23,12 @@ public class EnemyController : MonoBehaviour
     private FieldOfView fov;
     public Transform Target => fov?.NearestTarget;
 
+    public Transform[] waypoints;
+
+    [HideInInspector]
+    public Transform targetWaypoint = null;
+    private int waypointIndex = 0;
+
     //enemy view
     //public LayerMask targetMask;
     //public float viewRadius;
@@ -35,7 +41,10 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        stateMachine = new StateMachine<EnemyController>(this, new IdleState());
+        stateMachine = new StateMachine<EnemyController>(this, new MoveToWayPoint());
+        IdleState idleState = new IdleState();
+        idleState.isPatrol = true;
+        stateMachine.AddState(idleState);
         stateMachine.AddState(new MoveState());
         stateMachine.AddState(new AttackState());
         fov = GetComponent<FieldOfView>();
@@ -84,6 +93,19 @@ public class EnemyController : MonoBehaviour
     //    Gizmos.color = Color.green;
     //    Gizmos.DrawWireSphere(transform.position, attackRange);
     //}
+
+    public Transform FindNextWayPoint()
+    {
+        targetWaypoint = null;
+        if(waypoints.Length > 0)
+        {
+            targetWaypoint = waypoints[waypointIndex];
+        }
+
+        waypointIndex = (waypointIndex + 1) % waypoints.Length;
+
+        return targetWaypoint;
+    }
 
 }
 
